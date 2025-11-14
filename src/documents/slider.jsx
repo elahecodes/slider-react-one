@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import arrow from '../assets/icons/arrow.png'
 const Slider = () => {
   const [counter, setCounter] = useState(0);
   const [items, setItems] = useState([]);
@@ -22,6 +22,13 @@ const Slider = () => {
     }
   }, [items]);
 
+  const imgSelected = (id) => {
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 1000);
+    let selected = items[id];
+    setShowSlide([selected]);
+    setCounter(id);
+  };
   const plus = () => {
     setAnimate(true);
     setTimeout(() => setAnimate(false), 1000);
@@ -48,45 +55,64 @@ const Slider = () => {
   };
 
   return (
-    <div>
-      <div className="slider-container bg-red-400 relative h-2/3 w-4/5 p-1">
+    <div className="flex flex-col justify-center items-center gap-4 h-svh bg-slate-950">
+      <div className="slider-container w-[60rem] relative overflow-hidden h-[30rem] p-1 mt-7">
+        <div className="absolute z-10 inset-0 w-full left-0 h-full rounded-3xl bg-gradient-to-b from-transparent to-neutral-800"></div>
         {showSlide.map((item, index) => (
           <div
             key={index}
-            className={`bg-slate-500 slide border border-stale-500 m-2 ${
+            className={`w-full h-full slide ${
               animate ? "animate-opacity" : ""
             }`}
           >
-            <img className="w-full z-0 h-[40rem] object-cover" src={item.img} alt="" />
-         <div className="absolute bottom-7">
-             <h2
-              className={`text-3xl font-bold ${
-                animate ? "animate-translateTitle" : ""
-              }`}
-            >
-              {item.title}
-            </h2>
-            <p className={` ${
-                animate ? "animate-translateParagraph" : ""
-                }`}>
-              {item.description}
-            </p>
-         </div>
+            <img
+              className="w-full z-0 absolute inset-0 h-full object-cover rounded-3xl"
+              src={item.img}
+              alt=""
+            />
+            <div className="absolute z-20 right-8 bottom-8 flex flex-col justify-center items-start gap-4 max-w-[80%]">
+              <h2
+                className={`text-3xl text-white font-bold ${
+                  animate ? "animate-translateTitle" : ""
+                }`}
+              >
+                {item.title}
+              </h2>
+              <p
+                className={`text-white ${
+                  animate ? "animate-translateParagraph" : ""
+                }`}
+              >
+                {item.description}
+              </p>
+            </div>
           </div>
         ))}
 
         <button
           onClick={plus}
-          className="absolute z-30 top-30 bg-pink-200 p-2 text-xl right-0"
+          className="absolute flex top-[45%] justify-center items-center rounded-full w-16 h-16 backdrop-blur-sm bg-white/20 z-30 top-30 p-2 text-xl right-4"
         >
-          +
+          <img className="w-6" src={arrow} alt="" />
         </button>
         <button
           onClick={mines}
-          className="absolute z-30 top-30 bg-pink-200 p-2 text-xl left-0"
+          className="absolute flex top-[45%] justify-center items-center rounded-full w-16 h-16 backdrop-blur-sm bg-white/20 z-30 top-30 p-2 text-xl left-4"
         >
-          -
+          <img className="w-6 rotate-180" src={arrow} alt="" />
         </button>
+      </div>
+      <div className="w-[60rem] flex flex-nowrap items-center h-40 gap-2 overflow-x-auto">
+        {items.map((item) => {
+          return (
+            <div
+              onClick={() => imgSelected(item.id - 1)}
+              className="w-32 overflow-hidden shrink-0 rounded-2xl h-20 cursor-pointer"
+            >
+              <img className="object-cover hover:scale-125 transition-all" src={item.img} alt="" />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
