@@ -104,6 +104,7 @@ const Slider = () => {
               className="w-32 overflow-hidden shrink-0 rounded-2xl h-20 cursor-pointer"
             >
               <img className="object-cover hover:scale-125 transition-all" src={item.img} alt="" />
+              
             </div>
           );
         })}
@@ -113,4 +114,4 @@ const Slider = () => {
 };
 
 export default Slider;
-//npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+
