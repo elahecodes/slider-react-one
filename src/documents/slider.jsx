@@ -70,7 +70,7 @@ const Slider = () => {
               src={item.img}
               alt=""
             />
-            <div className="absolute z-20 right-8 bottom-8 flex flex-col justify-center items-start gap-4 max-w-[80%]">
+            <div className="absolute z-20 right-8 bottom-8 flex flex-col justify-center items-start gap-4 max-w-[95%]">
               <h2
                 className={`text-3xl text-white font-bold ${
                   animate ? "animate-translateTitle" : ""
@@ -78,26 +78,20 @@ const Slider = () => {
               >
                 {item.title}
               </h2>
-              <p
-                className={`text-white ${
-                  animate ? "animate-translateParagraph" : ""
-                }`}
-              >
-                {item.description}
-              </p>
+           
             </div>
           </div>
         ))}
 
         <button
           onClick={plus}
-          className="absolute flex top-[45%] justify-center items-center rounded-full w-16 h-16 backdrop-blur-sm bg-white/20 z-30 top-30 p-2 text-xl right-4"
+          className="absolute hover:scale-110 transition-all border-transparent border-2 hover:border-white flex top-[45%] justify-center items-center rounded-full w-16 h-16 backdrop-blur-sm bg-white/20 z-30 top-30 p-2 text-xl right-4"
         >
           <img className="w-6" src={arrow} alt="" />
         </button>
         <button
           onClick={mines}
-          className="absolute flex top-[45%] justify-center items-center rounded-full w-16 h-16 backdrop-blur-sm bg-white/20 z-30 top-30 p-2 text-xl left-4"
+          className="absolute hover:scale-110 transition-all border-transparent border-2 hover:border-white flex top-[45%] justify-center items-center rounded-full w-16 h-16 backdrop-blur-sm bg-white/20 z-30 top-30 p-2 text-xl left-4"
         >
           <img className="w-6 rotate-180" src={arrow} alt="" />
         </button>
