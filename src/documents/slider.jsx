@@ -60,7 +60,7 @@ const Slider = () => {
         <div className="absolute z-10 inset-0 w-full left-0 h-full rounded-3xl bg-gradient-to-b from-transparent to-neutral-800"></div>
         {showSlide.map((item, index) => (
           <div
-            key={index}
+            key = {index}
             className={`w-full h-full slide ${
               animate ? "animate-opacity" : ""
             }`}
